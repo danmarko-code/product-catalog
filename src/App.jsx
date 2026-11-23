@@ -3,7 +3,7 @@ import products from "./data/products";
 import ProductCard from "./components/ProductCard";
 import SearchBar from "./components/SearchBar";
 import "./App.css";
-
+import { useState, useEffect } from "react";
 function App() {
   // Lab 3: cart state
   const [cartCount, setCartCount] = useState(0);
@@ -15,6 +15,15 @@ function App() {
   const [category, setCategory] = useState("All");
   const [sortOrder, setSortOrder] = useState("default");
 
+  // Debounce: wait 300ms after the user stops typing
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(searchText);
+    }, 300);
+
+    return () => clearTimeout(timer); // cleanup
+  }, [searchText]);
+  
   const handleAddToCart = (title) => {
     setCartCount(cartCount + 1);
     setLastAdded(title);
