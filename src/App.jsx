@@ -22,6 +22,8 @@ function App() {
     const timer = setTimeout(() => {
       setDebouncedSearch(searchText);
     }, 300);
+    
+
 
     return () => clearTimeout(timer); // cleanup
   }, [searchText]);
@@ -56,6 +58,9 @@ function App() {
   } else if (sortOrder === "high-low") {
     filteredProducts.sort((a, b) => b.price - a.price);
   }
+ useEffect(() => {
+    document.title = `CvSU Mini Store (${filteredProducts.length} results)`;
+  }, [filteredProducts.length]);
 
   return (
     <div className="app">
