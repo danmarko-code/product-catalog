@@ -1,9 +1,11 @@
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import products from "./data/products";
 import ProductCard from "./components/ProductCard";
 import SearchBar from "./components/SearchBar";
 import "./App.css";
-import { useState, useEffect } from "react";
+
+
 function App() {
   // Lab 3: cart state
   const [cartCount, setCartCount] = useState(0);
@@ -23,7 +25,7 @@ function App() {
 
     return () => clearTimeout(timer); // cleanup
   }, [searchText]);
-  
+
   const handleAddToCart = (title) => {
     setCartCount(cartCount + 1);
     setLastAdded(title);
