@@ -1,3 +1,4 @@
+import { Children } from "react";
 import "./ProductCard.css";
 
 function ProductCard({
@@ -13,9 +14,11 @@ function ProductCard({
     currency: "PHP",
   }).format(price);
 
+  const hasBadge = Children.toArray(children).length > 0;
+
   return (
     <div className={`product-card ${inStock ? "" : "out-of-stock"}`}>
-      {children && <div className="badge">{children}</div>}
+      {hasBadge && <div className="badge">{children}</div>}
 
       <h3 className="product-title">{title}</h3>
       <p className="product-category">{category}</p>
